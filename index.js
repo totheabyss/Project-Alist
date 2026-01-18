@@ -66,6 +66,33 @@ app.post("/posts/:id", async (req,res)=>{
     }
 });
 
+app.get("/comments", (req,res)=>{
+    res.render("comments.ejs");
+})
+
+app.post("/commments/:id/edit", async (req,res) =>{
+    const id = Number(req.params.id);
+    const newContent = req.body.editContent;
+    if(!newContent) return res.status(404).send("Empty content");
+    try {
+        const result = await db.query("UPDATE comments SET content = $1 WHERE id = $2",[newContent,id]);
+        res.redirect(`/posts/${id}`);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Error3");
+    }
+});
+
+app.post("/comments/:id/delete", async (req,res) =>{
+    const id = Number(req.params.id);
+    try {
+        const result = await db.query("UPDATE comments SET content = 'Commentary Deleted' WHERE id = $1",[id]);
+        res.redirect(`/posts/${id}`);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Error4");
+    }
+})
 
 
 
