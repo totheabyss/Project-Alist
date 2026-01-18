@@ -87,6 +87,9 @@ app.post("/comments/:id/delete", async (req,res) =>{
     const id = Number(req.params.id);
     try {
         const result = await db.query("UPDATE comments SET content = 'Commentary Deleted' WHERE id = $1",[id]);
+     if (result.rowCount === 0) return res.status(404).send("Comment not found");
+
+    res.status(200).send("Comment deleted successfully");
         res.redirect(`/posts/${id}`);
     } catch (error) {
         console.log(error);
