@@ -34,13 +34,35 @@ app.get("/", async (req,res) =>{
     }
 });
 
-app.get("/posts:id", async (req,res) =>{
- try{
-    const albums = await getAlbums();
-    res.render("posts.ejs",{albums})
+app.get("/posts/:id", async (req,res) =>{
+const id = Number(req.params.id);
+if(isNaN(id)) return res.status(400).send("Invalid ID");    
+try{
+    const albumResult = await db.query("SELECT * FROM albums WHERE id = $1",[id]);
+     if (albumResult.rows.length === 0) {
+      return res.status(404).send("Album not found");
+    }
+    const album = albumResult.rows[0];
+    const result = await db.query("SELECT * FROM comments WHERE album_id = $1 ORDER BY created_at DESC",[id]);
+       const comments = result.rows;
+    res.render("posts.ejs",{album,comments});
 }catch(error){
         console.log(error);
         res.status(500).send("Internal Error");
+    }
+});
+
+app.post("/posts/:id", async (req,res)=>{
+    const id = Number(req.params.id);
+    const {name,comments} = req.body;
+    if(isNaN(id)) return res.status(400).send("Invalid ID");
+    if (!name || !comments) return res.status(400).send("Empty input");
+    try {
+        const newComent = await db.query("INSERT INTO comments(album_id,author,content) VALUES ($1,$2,$3)",[id,name,comments]);
+        res.redirect(`/posts/${id}`);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Error2");
     }
 });
 

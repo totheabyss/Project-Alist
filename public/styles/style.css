@@ -93,3 +93,8 @@ li{
   display: flex;
   justify-content: center;
 }
+img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+}

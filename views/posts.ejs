@@ -14,17 +14,30 @@
 <h2>Review</h2>
 <p><%= album.notes %></p>
 <h2><%= album.rating %></h2>
-<img src="<%= album.cover %>" alt="Cover of album: <%= album.title %>" width="300">
+<img src="<%= album.cover %>" alt="Cover of album: <%= album.title %>">
 <hr>
 
 <h3>Comentários</h3>
 <ul>
-  <!-- comentários -->
+  <% comments.forEach(comment => { %>
+        <li>
+      <p><strong><%= comment.author %></strong></p>
+      <p><%= comment.content %></p>
+      <small><%= comment.created_at %></small>
+
+      <form method="POST" action="/comments/<%= comment.id %>/delete">
+        <button>Delete</button>
+      </form>
+
+      <a href="/comments/<%= comment.id %>/edit">Edit</a>
+    </li>
+       <% }); %>
 </ul>
 
-<form>
-
-  <!-- criar comentário -->
+<form method="post" action="/submit">
+<input type="text" name="name">
+<textarea name="comments" cols="30" rows="10" placeholder="Your comment here"></textarea>
+<button type="submit">Send</button>
 </form>
 </main>
 <footer>
