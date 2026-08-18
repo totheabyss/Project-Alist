@@ -1,31 +1,40 @@
  # PROJECT ALIST 
 
 ## About
-It's a personal mini-blog that talk about music and reviews some albums using Javascript and PostgresSQL.
 
-##  Technologies
-• Node.js
+A-List is a personal music blog where I share album recommendations and reviews.
 
-• Express
+The application uses Node.js, Express, EJS and PostgreSQL, with integration with Apple's music API to retrieve album information and provide music previews.
 
-• EJS
-
-• CSS GRID
-
-• PostgresSQL
-
-• Music API
+## Technologies
+- JavaScript
+- Node.js
+- Express
+- EJS
+- PostgreSQL
+- CSS Grid
+- Apple Music API
 
 ## Current Status
 Personal project developed as a study of backend development with Node.js, Express and PostgreSQL.
 
--Features
-•Responsive main content and header area.
-•Custom header
-•Structured layout using css Grid
+## Features
+Album recommendations and reviews
+Dynamic album pages using EJS
+PostgreSQL database for albums and comments
+Create, edit and delete comments
+Integration with Apple's music API
+Music previews
+Responsive layout using CSS Grid
 
-##  Chalenges
-•Aligning backend-oriented thinking with frontend layout logic
+## What I Learned
+Building a web application with Node.js and Express
+Working with PostgreSQL and SQL queries
+Creating dynamic pages with EJS
+Integrating an external API
+Handling form submissions and HTTP requests
+Implementing CRUD operations for comments
+Connecting frontend pages with backend routes and a database
 
 ##  Next Steps
 •Implement backend with PostgresSQL
