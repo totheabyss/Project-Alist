@@ -16,8 +16,8 @@ It's a personal mini-blog that talk about music and reviews some albums using Ja
 
 • Music API
 
-##  Current Status
-Under development, frontend in advanced stage.
+## Current Status
+Personal project developed as a study of backend development with Node.js, Express and PostgreSQL.
 
 -Features
 •Responsive main content and header area.
